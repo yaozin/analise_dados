@@ -1,0 +1,31 @@
+OBJETIVO
+- Criar um modelo para testar dias necessários que os diagramadores levariam para realizar um projeto de 100 páginas.
+
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+# Simulando a mesma base
+dados = {
+    'Numero_Paginas': [120, 80, 40, 200, 150],
+    'Tempo_Producao': [30, 20, 10, 50, 35]
+}
+
+df = pd.DataFrame(dados)
+
+# Definindo variáveis
+X = df[['Numero_Paginas']]  # Sempre uma matriz 2D
+y = df['Tempo_Producao']    # Variável alvo
+
+# Criando o modelo
+modelo = LinearRegression()
+modelo.fit(X, y)
+
+# Pegando os coeficientes
+print(f'Coeficiente (a): {modelo.coef_[0]}')
+print(f'Intercepto (b): {modelo.intercept_}')
+
+# Previsão para um novo projeto de 100 páginas
+paginas_novo = np.array([[100]])
+previsao = modelo.predict(paginas_novo)
+print(f'Previsão de dias: {previsao[0]:.2f}')
