@@ -12,10 +12,13 @@ Obs: Criei essa conta quando era adolsecente, Yao é meu apelido(por isso ser o 
 
 ## Projetos
 
-### 
+### Vendas de livros
 Análise exploratória de dados de vendas livros, identificando tendências de interesse público e produtos mais lucrativos.
 
-### 
+### Gestão de pessoas
+Análise de dados gerados no ano de 2025(até o momento) no setor de revisão editorial, com amostragem final da distribuição da força de trabalho em seus respectivos selos de atuação.
+
+### Previsão de páginas 
 Modelo de machine learning para prever quantidade de dias levados para diagramaddores produzirem 100 páginas
 
 ## Contato
