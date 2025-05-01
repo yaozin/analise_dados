@@ -1,0 +1,40 @@
+Objetivo do projeto 
+ - Analisar vendas de livros, para gerar insights sobre o interesse público pelas categorias ofertadas.
+Fontes de dados
+ - Dados fictícios 
+Metodologia
+ - Limpeza e processamento inicial realizado no excel, com geração de tabelas e gráficos para idenitificar informações importantes.
+ - Power Query para limpeza final, com correções específicas. BI para visualização do dados com KPI e segmentação completa dos dados
+ - Processo feito do zero com Pyhton e as bibliotecas pandas, numpy e matplotlib para reforço e confirmação das infomrações obtidas
+
+Código 
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+Caminho = r'C:\Users\MRS\Documents\Downloads\vendas_livros.xlsx'
+Abas = pd.ExcelFile(Caminho)
+print(Abas.sheet_names)
+Tabela = pd.read_excel(Abas, sheet_name='Sheet1')
+print(Tabela.head())
+Tabela["Receita"] = Tabela["Quantidade Vendida"] * Tabela["Preço Unitário"] #Criar coluna chamada receita
+print(Tabela.head())
+
+Total_vendas = Tabela['Receita'].sum()
+print(Total_vendas)
+Media_Prec_Categoria = Tabela.groupby("Categoria")["Preço Unitário"].mean()#Média de preço por categoria
+print(Media_Prec_Categoria)
+Quant_Vend_Cat = Tabela.groupby("Categoria")["Quantidade Vendida"].sum()#Quantidade vendida por categoria
+print(Quant_Vend_Cat)
+
+Maior_receita = Tabela.groupby("Categoria")["Receita"].sum().sort_values(ascending=True)
+Maior_receita = Maior_receita.reset_index()#monta uma outra tabela com coluna e linha
+print(Maior_receita)
+plt.figure(figsize=(7,5))
+plt.barh(Maior_receita['Categoria'],Maior_receita['Receita'],color='green')
+plt.xlabel("Receita")
+plt.ylabel("Categoria")
+plt.title("Maior Receita")
+plt.show
+
+Rascunho do Dashboard
